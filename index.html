@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ゲーム遊び方ガイド</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#202534;--muted:#667085;--accent:#5865f2;--border:#e5e7ef}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;line-height:1.7}
+header{background:linear-gradient(135deg,#20243a,#5865f2);color:#fff;padding:48px 6% 42px}
+header h1{margin:0 0 8px;font-size:2.1rem} header p{margin:0;opacity:.9}
+main{max-width:1100px;margin:28px auto;padding:0 20px}
+section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin:18px 0;box-shadow:0 3px 12px #0000000b}
+h2{margin-top:0;border-left:5px solid var(--accent);padding-left:12px}
+h3{margin-bottom:6px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.card{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fafbff}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.95rem}
+th,td{border:1px solid #dfe3ec;padding:8px;text-align:left;vertical-align:top}
+th{background:#eef0f8}.command{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef0f5;border-radius:6px;padding:2px 6px;white-space:nowrap}
+.note{background:#fff7d6;border-radius:10px;padding:13px;margin-top:12px}
+.tip{background:#eef7ff;border-radius:10px;padding:13px}
+.small{color:var(--muted);font-size:.92rem}
+.badge{display:inline-block;background:var(--accent);color:#fff;padding:2px 9px;border-radius:99px;font-size:.82rem}
+</style>
+</head>
+<body>
+<header>
+<h1>🎮 ゲーム遊び方ガイド</h1>
+<p>Gを稼いで、動物を集めて、育てて、装備して、チームで対戦しよう！</p>
+</header>
+<main>
+
+<section>
+<h2>1. 🎰 ギャンブル</h2>
+<p>ゲーム内ポイント「G」を使って遊べるミニゲームです。各ゲームには連投防止のため、ユーザーごとに5秒のクールダウンがあります。</p>
+
+<div class="grid">
+<div class="card">
+<h3>🃏 ドローポーカー</h3>
+<p><span class="command">!poker &lt;相手&gt; [賭け金]</span></p>
+<p>2人で遊ぶ5枚のドローポーカー。賭け金は指定しなければ100Gです。</p>
+<ol>
+<li>対戦相手に招待が届く。</li>
+<li>相手が「承諾する」と対戦開始。</li>
+<li>お互いに5枚のカードが配られる。</li>
+<li>DMで交換したいカードを選び、最大5枚まで交換する。</li>
+<li>交換しない場合は「交換しない」を押す。</li>
+<li>最終的なポーカーの役を比較して勝敗を決める。</li>
+</ol>
+<p>勝者は2人分の賭け金を獲得。引き分けなら、それぞれの賭け金が返却されます。</p>
+<p class="small">役の強さ：ロイヤルストレートフラッシュ ＞ ストレートフラッシュ ＞ フォーカード ＞ フルハウス ＞ フラッシュ ＞ ストレート ＞ スリーカード ＞ ツーペア ＞ ワンペア ＞ ハイカード</p>
+</div>
+
+<div class="card">
+<h3>🎯 Hi-Lo</h3>
+<p><span class="command">!hilo &lt;賭け金&gt;</span><br><span class="command">!guess &lt;数字&gt;</span></p>
+<p>1〜100の秘密の数字を当てるゲーム。最初に賭け金を支払います。</p>
+<table><tr><th>何回目に正解？</th><th>倍率</th></tr>
+<tr><td>1回目</td><td>×32</td></tr><tr><td>2回目</td><td>×16</td></tr>
+<tr><td>3回目</td><td>×8</td></tr><tr><td>4回目</td><td>×4</td></tr>
+<tr><td>5回目</td><td>×2</td></tr><tr><td>6回目</td><td>×1</td></tr></table>
+<p>外すと「もっと大きい／小さい」というヒントが出ます。6回すべて外すと賭け金を失います。</p>
+</div>
+
+<div class="card">
+<h3>🎰 スロット</h3>
+<p><span class="command">!slot &lt;賭け金&gt;</span><br><span class="command">!slot info</span></p>
+<p>3つのリールを回し、同じ絵柄が3つ揃えば配当を獲得します。ペアやハズレは賭け金没収です。</p>
+<table><tr><th>絵柄</th><th>出現ウェイト</th><th>3つ揃い</th></tr>
+<tr><td>🍋</td><td>50</td><td>×5</td></tr>
+<tr><td>❤️</td><td>25</td><td>×20</td></tr>
+<tr><td>👻</td><td>15</td><td>×100</td></tr>
+<tr><td>💎</td><td>9</td><td>×250</td></tr>
+<tr><td>7️⃣</td><td>1</td><td>×100,000</td></tr></table>
+<p class="small"><span class="command">!slot info</span>で各絵柄の確率、ペア・ハズレの確率、還元率を確認できます。</p>
+</div>
+
+<div class="card">
+<h3>🪙 コイントス</h3>
+<p><span class="command">!coin &lt;表/裏&gt; &lt;賭け金&gt;</span></p>
+<p>表か裏を予想します。当たれば賭け金の<strong>×2</strong>を獲得、外れると賭け金を失います。</p>
+<p>「表」は <span class="command">表</span> / <span class="command">omote</span> / <span class="command">heads</span> / <span class="command">h</span>、「裏」も同様に英語・略称を利用できます。</p>
+</div>
+</div>
+</section>
+
+<section>
+<h2>2. 🐾 動物収集</h2>
+<p><span class="command">!hunt</span>を使うと、1回につき<strong>4匹</strong>の動物を独立抽選で入手できます。<span class="command">!hunt info</span>で出現確率を確認できます。</p>
+<table>
+<tr><th>ランク</th><th>動物</th><th>売却額</th><th>出現ウェイト</th></tr>
+<tr><td>LLL</td><td>🦧</td><td>50,000G</td><td>0（狩猟不可・合成専用）</td></tr>
+<tr><td>LL</td><td>🐉 🐦‍🔥</td><td>30,000G</td><td>4</td></tr>
+<tr><td>L</td><td>🙈 🙉 🙊</td><td>10,000G</td><td>10</td></tr>
+<tr><td>SSS</td><td>🐲 🦄 ☠️ 👻</td><td>3,000G</td><td>100</td></tr>
+<tr><td>SS</td><td>🐯 🐋 🐻‍❄️ 🦭</td><td>2,000G</td><td>250</td></tr>
+<tr><td>S</td><td>🐊 🦒 🐘 🦍</td><td>1,000G</td><td>500</td></tr>
+<tr><td>A</td><td>🦏 🦛 🐃 🦬</td><td>500G</td><td>900</td></tr>
+<tr><td>B</td><td>🐻 🐅 🦁 🦅</td><td>250G</td><td>1,500</td></tr>
+<tr><td>C</td><td>🐺 🐕 🐕‍🦺 🐆</td><td>150G</td><td>2,200</td></tr>
+<tr><td>D</td><td>🦌 🐗 🐐 🦏</td><td>10G</td><td>3,000</td></tr>
+<tr><td>E</td><td>🐰 🐿️ 🦊 🦝</td><td>50G</td><td>4,000</td></tr>
+</table>
+<p><span class="command">!zoo</span>で所持している動物と、すべて売った場合の見込み額を確認できます。</p>
+</section>
+
+<section>
+<h2>3. ⚔️ 動物のステータス・属性</h2>
+<p>動物には「ちから」「まほう」「HP」「魔術属性」があります。同じランクでも戦い方が異なる個性があります。</p>
+<table>
+<tr><th>タイプ</th><th>特徴</th></tr>
+<tr><td>パワー型</td><td>ちからが高く、まほうが低め</td></tr>
+<tr><td>魔術型</td><td>まほうが高く、ちからが低め</td></tr>
+<tr><td>タフ型</td><td>HPが高い</td></tr>
+<tr><td>バランス型</td><td>各能力が標準的</td></tr></table>
+
+<h3>🌈 魔術属性</h3>
+<p><strong>⚡️ → 💦 → 🔥 → ❄️ → 🌪️ → 🌱 → ⚡️</strong></p>
+<p>矢印の元の属性が、矢印の先の属性に対して有利です。</p>
+<table><tr><th>相性</th><th>魔術ダメージ倍率</th></tr>
+<tr><td>有利</td><td>×1.5</td></tr>
+<tr><td>互角</td><td>×1.0</td></tr>
+<tr><td>不利</td><td>×0.6</td></tr></table>
+<p><span class="command">!animal &lt;動物&gt;</span>で、その動物のLv.1基礎ステータス、属性、得意・苦手属性を確認できます。</p>
+</section>
+
+<section>
+<h2>4. 📈 レベルアップ</h2>
+<p><span class="command">!levelup &lt;動物&gt; &lt;金額&gt;</span>で動物を強化できます。</p>
+<ul>
+<li>最大レベルは<strong>Lv.100</strong>。</li>
+<li>Lv.1が基礎値で、Lv.100では基礎ステータスが<strong>ちょうど2倍</strong>。</li>
+<li>指定したGを使って、可能なところまで一気にレベルアップします。</li>
+<li>次のレベルに届かなかったGは「進捗」として保存され、次回に引き継がれます。</li>
+<li>レベルアップした動物は、動物園にいてもチームに編成されていても強化できます。</li>
+</ul>
+<p>レベルアップに必要なGは、到達するレベルに応じて増加します。次のレベルが <strong>n</strong> の場合、必要額は <strong>100,000 × n G</strong>（進捗分を差し引き）です。</p>
+</section>
+
+<section>
+<h2>5. 🎁 ガチャ・装備</h2>
+<p><span class="command">!gacha</span>でガチャメニューを表示できます。ガチャでは武器、防具、そして金ガチャ限定のトーテムが手に入ります。</p>
+<table>
+<tr><th>ガチャ</th><th>価格</th><th>コモン</th><th>レア</th><th>エピック</th><th>レジェンド</th><th>トーテム</th></tr>
+<tr><td>🥉 銅</td><td>50,000G</td><td>70%</td><td>25%</td><td>5%</td><td>0%</td><td>なし</td></tr>
+<tr><td>🥈 銀</td><td>100,000G</td><td>40%</td><td>40%</td><td>18%</td><td>2%</td><td>なし</td></tr>
+<tr><td>🥇 金</td><td>500,000G</td><td>19.8%</td><td>39.6%</td><td>29.7%</td><td>9.9%</td><td>1%</td></tr>
+</table>
+<p class="small">金ガチャはトーテム判定が先に行われるため、通常アイテムの実際の確率は上表のとおり、合計99%です。</p>
+
+<h3>装備の効果</h3>
+<table><tr><th>レアリティ</th><th>効果値</th></tr>
+<tr><td>⚪ コモン</td><td>+1〜5</td></tr>
+<tr><td>🔵 レア</td><td>+5〜12</td></tr>
+<tr><td>🟣 エピック</td><td>+12〜25</td></tr>
+<tr><td>🟠 レジェンド</td><td>+25〜50</td></tr></table>
+<ul>
+<li>⚔️ ちから武器：ちからを強化</li>
+<li>🪄 まほう武器：まほうを強化</li>
+<li>🛡️ 防具：HPを強化</li>
+<li>🪆 トーテム：戦闘中に1回だけ復活できる</li>
+</ul>
+
+<h3>装備の操作</h3>
+<ul>
+<li><span class="command">!weapon list</span>：所持アイテムを確認</li>
+<li><span class="command">!weapon &lt;動物&gt; &lt;装備ID&gt;</span>：装備する</li>
+<li><span class="command">!weapon remove &lt;動物&gt;</span>：その動物の装備をすべて外す</li>
+<li><span class="command">!weapon sell &lt;装備ID&gt;</span>：1個売却</li>
+<li><span class="command">!weapon sell &lt;ランク/all&gt; &lt;種類/all&gt;</span>：条件指定でまとめて売却</li>
+</ul>
+<p>武器と防具は同時に装備できます。トーテムを装備すると武器・防具が外れ、武器または防具を装備するとトーテムが外れます。</p>
+<p class="small">武器・防具の売却額は効果値×200G。トーテムは100,000Gで売却できます。</p>
+<p><span class="command">!gacha &lt;銅/銀/金&gt; &lt;回数&gt;</span>で最大30回までまとめて引けます。<span class="command">!gacha info</span>で確率と効果値を確認できます。</p>
+</section>
+
+<section>
+<h2>6. 🙈 三猿合成</h2>
+<p><span class="command">!mix</span>で、</p>
+<p style="font-size:1.3rem"><strong>🙈 + 🙉 + 🙊 → 🦧</strong></p>
+<p>の合成ができます。</p>
+<ul>
+<li>🙈・🙉・🙊をそれぞれ1匹ずつ消費。</li>
+<li>最高ランク<strong>LLL</strong>の🦧を1匹獲得。</li>
+<li>合成前に確認ボタンが表示されます。</li>
+<li>合成は取り消せません。</li>
+</ul>
+</section>
+
+<section>
+<h2>7. 👥 チーム編成</h2>
+<p>チームには最大<strong>6匹</strong>を編成できます。</p>
+<table><tr><th>スロット</th><th>位置</th></tr>
+<tr><td>1〜3</td><td>前衛</td></tr>
+<tr><td>4〜6</td><td>後衛</td></tr></table>
+<ul>
+<li>同じ動物を1チームに2匹以上編成することはできません。</li>
+<li>チームに入れた動物は動物園から移動するため、通常の動物売却の対象外になります。</li>
+<li>スロットに別の動物を入れると、元の動物は動物園へ戻ります。</li>
+</ul>
+<p><span class="command">!team &lt;動物&gt; &lt;1〜6&gt;</span>：編成<br>
+<span class="command">!team list</span>：チーム確認<br>
+<span class="command">!team remove &lt;動物&gt;</span>：チームから外す</p>
+</section>
+
+<section>
+<h2>8. ⚔️ チームバトル</h2>
+<p><span class="command">!battle &lt;相手&gt;</span>で、2人のチーム同士を対戦させます。挑戦した側が先攻です。</p>
+
+<h3>1ターンの流れ</h3>
+<ol>
+<li>自分の<strong>前衛</strong>から攻撃する動物を選ぶ。</li>
+<li><strong>⚔️物理</strong>か<strong>🔮魔術</strong>を選ぶ。</li>
+<li>相手の<strong>前衛</strong>から攻撃対象を選ぶ。</li>
+<li>ダメージを与え、ターン交代。</li>
+</ol>
+
+<table><tr><th>攻撃方法</th><th>ダメージ</th></tr>
+<tr><td>⚔️ 物理</td><td>攻撃者の「ちから」</td></tr>
+<tr><td>🔮 魔術</td><td>攻撃者の「まほう」×属性相性</td></tr></table>
+
+<h3>🪆 トーテム</h3>
+<p>HPが0以下になった動物がトーテムを装備している場合、戦闘中<strong>1回だけ</strong>、最大HPの半分（最低1）で復活します。</p>
+
+<h3>🏆 勝敗</h3>
+<ul>
+<li>相手チームを全滅させれば勝利。</li>
+<li>最大<strong>200ターン</strong>まで。</li>
+<li>200ターン到達時に双方が残っていれば引き分け。</li>
+<li>バトル終了後、勝敗・引き分けが戦績に記録されます。</li>
+</ul>
+<div class="tip">💡 魔術は属性相性の影響を受けます。相手の属性を見て有利な属性の動物を選ぶのがポイントです。</div>
+</section>
+
+<section>
+<h2>9. 💰 G・送金・銀行</h2>
+
+<h3>💰 所持ポイント</h3>
+<p><span class="command">!cash</span>で現在のGを確認できます。</p>
+
+<h3>💸 プレイヤー間送金</h3>
+<p><span class="command">!give &lt;相手&gt; &lt;金額&gt;</span></p>
+<p>他のプレイヤーへGを送れます。Botや自分自身への送金はできません。</p>
+
+<h3>🏦 ニコニコ銀行</h3>
+<p>Gが足りないときは借金できます。</p>
+<ul>
+<li><span class="command">!borrow &lt;金額&gt;</span>：借りる</li>
+<li><span class="command">!repay &lt;金額&gt;</span>：指定額を返済</li>
+<li><span class="command">!repay all</span>：全額返済</li>
+<li><span class="command">!bank</span>：借金・所持G・次の利息発生までの時間を確認</li>
+</ul>
+<p><strong>金利は1時間ごとに残高が2倍</strong>（10割複利）。借りた瞬間から時間のカウントが始まります。</p>
+<div class="note">⚠️ 借金が残っている間、Hi-Lo・スロット・コイントスの配当は<strong>×0.01</strong>になります。借金をしてギャンブルで返す場合はかなり厳しいペナルティがかかります。</div>
+</section>
+
+<section>
+<h2>10. 📜 コマンド一覧</h2>
+<table>
+<tr><th>コマンド</th><th>できること</th></tr>
+<tr><td><span class="command">!poker &lt;相手&gt; [賭け金]</span></td><td>2人ドローポーカー</td></tr>
+<tr><td><span class="command">!hilo &lt;賭け金&gt;</span></td><td>Hi-Lo開始</td></tr>
+<tr><td><span class="command">!guess &lt;数字&gt;</span></td><td>Hi-Loで数字を予想</td></tr>
+<tr><td><span class="command">!slot &lt;賭け金&gt;</span></td><td>スロット</td></tr>
+<tr><td><span class="command">!slot info</span></td><td>スロット確率・還元率</td></tr>
+<tr><td><span class="command">!coin &lt;表/裏&gt; &lt;賭け金&gt;</span></td><td>コイントス</td></tr>
+<tr><td><span class="command">!hunt</span></td><td>動物を4匹狩猟</td></tr>
+<tr><td><span class="command">!hunt info</span></td><td>動物の出現確率</td></tr>
+<tr><td><span class="command">!zoo</span></td><td>動物園を確認</td></tr>
+<tr><td><span class="command">!animal &lt;動物&gt;</span></td><td>動物の基礎ステータス・属性</td></tr>
+<tr><td><span class="command">!sell all</span></td><td>動物をすべて売却</td></tr>
+<tr><td><span class="command">!sell &lt;ランク&gt;</span></td><td>指定ランクをすべて売却</td></tr>
+<tr><td><span class="command">!sell &lt;動物&gt; all</span></td><td>指定動物をすべて売却</td></tr>
+<tr><td><span class="command">!sell &lt;動物&gt; &lt;数量&gt;</span></td><td>指定数だけ売却</td></tr>
+<tr><td><span class="command">!mix</span></td><td>三猿を合成</td></tr>
+<tr><td><span class="command">!gacha</span></td><td>ガチャメニュー</td></tr>
+<tr><td><span class="command">!gacha info</span></td><td>ガチャ確率</td></tr>
+<tr><td><span class="command">!gacha &lt;銅/銀/金&gt; &lt;回数&gt;</span></td><td>ガチャをまとめて引く（最大30回）</td></tr>
+<tr><td><span class="command">!weapon list</span></td><td>所持装備一覧</td></tr>
+<tr><td><span class="command">!weapon &lt;動物&gt; &lt;装備ID&gt;</span></td><td>装備する</td></tr>
+<tr><td><span class="command">!weapon remove &lt;動物&gt;</span></td><td>装備を外す</td></tr>
+<tr><td><span class="command">!weapon sell ...</span></td><td>装備を売却</td></tr>
+<tr><td><span class="command">!team list</span></td><td>チーム確認</td></tr>
+<tr><td><span class="command">!team &lt;動物&gt; &lt;1〜6&gt;</span></td><td>チーム編成</td></tr>
+<tr><td><span class="command">!team remove &lt;動物&gt;</span></td><td>チームから外す</td></tr>
+<tr><td><span class="command">!levelup &lt;動物&gt; &lt;金額&gt;</span></td><td>レベルアップ</td></tr>
+<tr><td><span class="command">!battle &lt;相手&gt;</span></td><td>チームバトル</td></tr>
+<tr><td><span class="command">!cash</span></td><td>所持G確認</td></tr>
+<tr><td><span class="command">!give &lt;相手&gt; &lt;金額&gt;</span></td><td>Gを送る</td></tr>
+<tr><td><span class="command">!borrow &lt;金額&gt;</span></td><td>銀行から借りる</td></tr>
+<tr><td><span class="command">!repay &lt;金額/all&gt;</span></td><td>銀行へ返済</td></tr>
+<tr><td><span class="command">!bank</span></td><td>銀行状況</td></tr>
+<tr><td><span class="command">!stats</span></td><td>ポーカー・ギャンブル・バトルの戦績</td></tr>
+<tr><td><span class="command">!dice [面数]</span></td><td>サイコロを振る（省略時6面）</td></tr>
+<tr><td><span class="command">!ping</span></td><td>Botの応答速度を確認</td></tr>
+</table>
+</section>
+
+<section>
+<h2>11. 📊 戦績</h2>
+<p><span class="command">!stats</span>で以下を確認できます。</p>
+<ul>
+<li>🃏 ポーカー：勝ち・負け・引き分け・勝率</li>
+<li>🎰 ギャンブル：勝ち・負け・勝率・収支</li>
+<li>⚔️ バトル：勝ち・負け・引き分け・勝率</li>
+<li>💰 現在の所持ポイント</li>
+</ul>
+</section>
+
+</main>
+</body>
+</html>
